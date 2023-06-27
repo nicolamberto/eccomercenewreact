@@ -1,11 +1,12 @@
 import { Box, FormControl, InputLabel, MenuItem, Select, Slider, Typography } from '@mui/material'
 import React, { useState } from 'react'
+import { useFilters } from '../hooks/useFilters'
 
-const Filters = ({setFilters}) => {
-    const [minPrice, setMinPrice] = useState(0)
+const Filters = () => {
+    const {filters, setFilters} = useFilters()
 
     const handleChangeMinPrice = (e)=>{
-        setMinPrice(e.target.value)
+      
         setFilters(prevState=>({
             ...prevState,
             minPrice: e.target.value
@@ -19,21 +20,21 @@ const Filters = ({setFilters}) => {
         }))
     }
 
-    console.log(minPrice);
-
   return (
-    <Box sx={{display:'flex', justifyContent:'space-around', gap:10, minWidth: 500, border:'1px solid blue' }}>
-      <FormControl sx={{width:'30%',}}>
+    <Box sx={{display:'flex', justifyContent:'space-around', gap:10, minWidth: 500, pb:6}}>
+      <FormControl sx={{width:'50%',}}>
         <InputLabel id="demo-simple-select-label">Category</InputLabel>
         <Select onChange={handleChangeCategory}
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value=''
+            value={filters.category}
             label="Price"
         >
           <MenuItem value='all'>Todas</MenuItem>
-          <MenuItem value='laptops'>Portatiles</MenuItem>
-          <MenuItem value='smartphones'>Celulares</MenuItem>
+          <MenuItem value='Gorras'>Gorras</MenuItem>
+          <MenuItem value='Remeras'>Remeras</MenuItem>
+          <MenuItem value='Buzos y Camperas'>Buzos y remeras</MenuItem>
+          <MenuItem value='Zapatillas'>Zapatillas</MenuItem>
         </Select>
       </FormControl>
       <Box sx={{width:'40%'}}>
